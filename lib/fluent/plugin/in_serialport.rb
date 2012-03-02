@@ -1,5 +1,3 @@
-require "fluent/plugin/in_serialport/version"
-
 module Fluent
 class SerialPortInput < Input
   Plugin.register_input('serial_input', self)
@@ -34,10 +32,12 @@ class SerialPortInput < Input
               d = d.split(@delimiter)
               @data.split(",").each do |x|
                 dd = d.shift
-                if dd =~ /\./
-                  dd = dd.strip.to_f
-                else
-                  dd = dd.strip.to_i
+                if dd =~ /^(0x)|(\d+)/
+                  if dd =~ /\./
+                    dd = dd.strip.to_f
+                  else
+                    dd = dd.strip.to_i
+                  end
                 end
                 data[x.strip.to_sym] = dd
               end

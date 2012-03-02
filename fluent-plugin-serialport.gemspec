@@ -18,7 +18,9 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_development_dependency "fluentd"
+  s.add_development_dependency "serialport"
   s.add_runtime_dependency "fluentd"
+  s.add_runtime_dependency "serialport"
   # specify any dependencies here; for example:
   # s.add_development_dependency "rspec"
   # s.add_runtime_dependency "rest-client"
