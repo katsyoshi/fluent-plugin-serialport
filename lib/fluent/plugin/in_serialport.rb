@@ -6,6 +6,7 @@ class SerialPortInput < Input
   config_param :eol, :string, :default => $/
   config_param :com_port, :string
   config_param :baud_rate, :integer
+  config_param :tag, :string, :default => "serial"
 
   def initialize
     require 'serialport'
@@ -26,23 +27,8 @@ class SerialPortInput < Input
           begin
             d = @serial.readline(@eol)
             data = {}
-            if @data.empty?
-              data = {:default => d}
-            else
-              d = d.split(@delimiter)
-              @data.split(",").each do |x|
-                dd = d.shift
-                if dd =~ /^(0x)|(\d+)/
-                  if dd =~ /\./
-                    dd = dd.strip.to_f
-                  else
-                    dd = dd.strip.to_i
-                  end
-                end
-                data[x.strip.to_sym] = dd
-              end
-            end
-            Engine.emit("serial.#{device}", Engine.now, data)
+            data = {:default => d}
+            Engine.emit("#{@tag}.#{device}", Engine.now, data)
           rescue => e
             STDERR.puts caller(), e
             break
