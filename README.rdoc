@@ -1,0 +1,29 @@
+= fluent plugin serialport
+
+fluent-plugin-serialport provides input plugin for {Fluentd}[http://fluentd.org].
+
+= Install
+
+git clone git@github.com:katsyoshi/fluent-plugin-serialport.git
+
+cp fluent-plugin-serialport/lib/fluent/plugin/flent-plugin-serial.rb ${FLUENT_DIR}/plugin/.
+
+== Configuration
+
+=== Input Configuration
+
+  <source>
+    type serial_input
+    com_port /path/to/comport
+    baud_rate 9600
+  </source>
+
+= TODO
+
+- gems
+- test
+
+= Copyright
+
+Copyright:: Copyright (c) 2012- Katsuyoshi MATSUMOTO
+License:: Apache License, Version 2.0

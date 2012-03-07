@@ -11,6 +11,7 @@ class SerialPortInput < Input
   def initialize
     require 'serialport'
     super
+    @serial = SerialPort.new(@com_port, @baud_rate, 8, 1, SerialPort::NONE)
   end
 
   def configure(conf)
@@ -18,24 +19,7 @@ class SerialPortInput < Input
   end
 
   def start
-    @serial = SerialPort.new(@com_port, @baud_rate, 8, 1, SerialPort::NONE)
-
-    @thread = Thread.new do
-      ary = []
-      loop do
-        unless @serial.closed?
-          begin
-            d = @serial.readline(@eol)
-            data = {}
-            data = {:default => d}
-            Engine.emit("#{@tag}.#{device}", Engine.now, data)
-          rescue => e
-            STDERR.puts caller(), e
-            break
-          end
-        end
-      end
-    end
+    @thread = Thread.new(&method(run))
   end
 
   def shutdown
@@ -43,13 +27,24 @@ class SerialPortInput < Input
     @thread.join
   end
 
-  private
-  def average(ary)
-    ary.inject(:+).to_f/ary.size.to_f
+  def run
+    loop do
+      unless @serial.closed?
+        begin
+          data = {:default => @serial.readline(@eol)}
+          Engine.emit("#{@tag}.#{device}", Engine.now, data)
+        rescue => e
+          STDERR.puts caller(), e
+          break
+        end
+      end
+    end
   end
 
+  private
   def device
     File.basename(@com_port).gsub(/\./,"_")
   end
+
 end
 end
