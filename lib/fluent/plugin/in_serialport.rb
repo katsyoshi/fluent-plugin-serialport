@@ -4,8 +4,6 @@ class SerialPortInput < Input
   config_param :com_port, :string
   config_param :baud_rate, :integer
   config_param :tag, :string, :default => "serial"
-  config_param :data, :string, :default => ""
-  config_param :delimiter, :string, :default => ","
   config_param :eol, :string, :default => $/
 
   def initialize
@@ -15,6 +13,7 @@ class SerialPortInput < Input
 
   def configure(conf)
     super
+    @device = device
   end
 
   def start
@@ -31,8 +30,8 @@ class SerialPortInput < Input
     loop do
       unless @serial.closed?
         begin
-          data = {:default => @serial.readline(@eol)}
-          Engine.emit("#{@tag}.#{device}", Engine.now, data)
+          data = {@device => @serial.readline(@eol)}
+          Engine.emit(@tag, Engine.now, data)
         rescue
           STDERR.puts caller()
           break
@@ -45,6 +44,5 @@ class SerialPortInput < Input
   def device
     File.basename(@com_port).gsub(/\./,"_")
   end
-
 end
 end
