@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.version     = "0.0.1"
   s.authors     = ["MATSUMOTO Katsuyoshi"]
   s.email       = ["matsumoto.katsuyoshi+rubygems@gmail.com"]
-  s.homepage    = ""
+  s.homepage    = "https://github.com/katsyoshi/fluent-plugin-serialport"
   s.summary     = %q{fluentd plugin for serial port}
   s.description = %q{fluentd plugin for serial port}
 
