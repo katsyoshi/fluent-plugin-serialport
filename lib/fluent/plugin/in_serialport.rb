@@ -1,6 +1,6 @@
 module Fluent
 class SerialPortInput < Input
-  Plugin.register_input('serial_input', self)
+  Plugin.register_input('serialport', self)
   config_param :com_port, :string
   config_param :baud_rate, :integer
   config_param :tag, :string, :default => "serial"
