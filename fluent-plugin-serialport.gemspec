@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.name        = "fluent-plugin-serialport"
   s.version     = "0.0.1"
   s.authors     = ["MATSUMOTO Katsuyoshi"]
-  s.email       = ["matsumoto.katsuyoshi+github@gmail.com"]
+  s.email       = ["matsumoto.katsuyoshi+rubygems@gmail.com"]
   s.homepage    = ""
   s.summary     = %q{fluentd plugin for serial port}
   s.description = %q{fluentd plugin for serial port}
@@ -17,11 +17,8 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  s.add_development_dependency "fluentd", [">=0.10.7"]
+  s.add_development_dependency "fluentd", ">=0.10.7"
   s.add_development_dependency "serialport"
-  s.add_runtime_dependency "fluentd", [">=0.10.7"]
+  s.add_runtime_dependency "fluentd", ">=0.10.7"
   s.add_runtime_dependency "serialport"
-  # specify any dependencies here; for example:
-  # s.add_development_dependency "rspec"
-  # s.add_runtime_dependency "rest-client"
 end
