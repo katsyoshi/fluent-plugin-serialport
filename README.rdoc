@@ -4,13 +4,12 @@ fluent-plugin-serialport provides input plugin for {Fluentd}[http://fluentd.org]
 
 = Install
 
-gem install fluent-plugin-serialport
+  gem install fluent-plugin-serialport
 
 or
 
-git clone git@github.com:katsyoshi/fluent-plugin-serialport.git
-
-cp fluent-plugin-serialport/lib/fluent/plugin/flent-plugin-serial.rb ${FLUENT_DIR}/plugin/.
+  git clone git@github.com:katsyoshi/fluent-plugin-serialport.git
+  cp fluent-plugin-serialport/lib/fluent/plugin/flent-plugin-serial.rb ${FLUENT_DIR}/plugin/.
 
 == Configuration
 
