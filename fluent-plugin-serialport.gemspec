@@ -19,4 +19,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency "fluentd"
   s.add_dependency "serialport"
+  s.add_development_dependency "simplecov"
+  s.add_development_dependency "rake"
 end

@@ -10,3 +10,9 @@ tmtags
 \#*
 .\#*
 *.swp
+
+# simplecov
+coverage
+
+# rdoc
+rdoc

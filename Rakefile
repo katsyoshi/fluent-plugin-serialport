@@ -1,10 +1,17 @@
 require "bundler/gem_tasks"
 
-require 'rake/testtask'
-Rake::TestTask.new(:test) do |test|
-  test.libs << 'lib' << 'test'
-  test.pattern = 'test/**/test_*.rb'
-  test.verbose = true
+task :test do
+  require 'rake/testtask'
+  Rake::TestTask.new do |task|
+    task.libs << 'lib' << 'test'
+    task.pattern = 'test/**/test_*.rb'
+    task.verbose = true
+  end
+end
+
+task :report do
+  require 'simplecov'
+  SimpleCov.start
 end
 
 task :default => [:build]
