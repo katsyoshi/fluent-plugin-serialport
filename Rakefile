@@ -14,4 +14,4 @@ task :report do
   SimpleCov.start
 end
 
-task :default => [:build]
+task :default => [:test]
