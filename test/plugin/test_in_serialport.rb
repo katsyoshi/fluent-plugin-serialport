@@ -24,15 +24,4 @@ class SerialPortInputTest < Test::Unit::TestCase
     assert_equal 9600, d.instance.baud_rate
     assert_equal 'serialport', d.instance.tag
   end
-
-  def test_configure_class
-    test = Fluent::SerialPortInput.new
-    test.configure(CONFIG)
-  end
-
-  def test_device
-    test = Fluent::SerialPortInput.new
-    test.configure(CONFIG)
-    test.__send__(:device)
-  end
 end
