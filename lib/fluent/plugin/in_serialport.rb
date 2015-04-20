@@ -5,6 +5,7 @@ class SerialPortInput < Input
   config_param :baud_rate, :integer
   config_param :tag, :string, :default => "serial"
   config_param :eol, :string, :default => $/
+  config_param :include_time, :bool, :default => false
 
   def initialize
     require 'serialport'
@@ -30,7 +31,8 @@ class SerialPortInput < Input
     loop do
       unless @serial.closed?
         begin
-          data = {@device => @serial.readline(@eol)}
+          timenow = @include_time ? Time.now.to_s << ' ' : ''
+          data = {@device => timenow << @serial.readline(@eol)}
           Engine.emit(@tag, Engine.now, data)
         rescue
           STDERR.puts caller()
