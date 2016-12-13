@@ -7,6 +7,8 @@ class SerialPortInput < Input
   config_param :eol, :string, :default => $/
   config_param :include_time, :bool, :default => false
 
+  define_method("router") { Fluent::Engine } unless method_defined?(:router)
+
   def initialize
     require 'serialport'
     super
@@ -33,7 +35,7 @@ class SerialPortInput < Input
         begin
           timenow = @include_time ? Time.now.to_s << ' ' : ''
           data = {@device => timenow << @serial.readline(@eol)}
-          Engine.emit(@tag, Engine.now, data)
+          router.emit(@tag, Engine.now, data)
         rescue
           STDERR.puts caller()
           break
