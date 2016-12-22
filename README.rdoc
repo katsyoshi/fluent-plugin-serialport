@@ -16,7 +16,7 @@ or
 === Input Configuration
 
   <source>
-    type serialport
+    @type serialport
     com_port /path/to/comport
     tag serial.sensor
     baud_rate 9600
