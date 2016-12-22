@@ -1,3 +1,4 @@
+require 'fluent/input'
 module Fluent
 class SerialPortInput < Input
   Plugin.register_input('serialport', self)
