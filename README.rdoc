@@ -22,10 +22,11 @@ or
     baud_rate 9600
   </source>
 
-= TODO
+= Contributors
 
-- gems
-- test
+{@frankkursters}[https://github.com/frankkusters]
+
+{@nidcode}[https://github.com/nidcode]
 
 = Copyright
 
