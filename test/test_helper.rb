@@ -9,6 +9,3 @@ $LOAD_PATH.unshift(__dir__)
 require 'fluent/test'
 
 require 'fluent/plugin/in_serialport'
-
-class Test::Unit::TestCase
-end
