@@ -12,10 +12,6 @@ class SerialPortInput < Input
 
   define_method("router") { Fluent::Engine } unless method_defined?(:router)
 
-  def initialize
-    super
-  end
-
   def configure(conf)
     super
     @device = device
