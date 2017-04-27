@@ -1,4 +1,4 @@
-require 'fluent/test'
+require 'test_helper'
 
 class SerialPortInputTest < Test::Unit::TestCase
   def setup
@@ -14,7 +14,7 @@ class SerialPortInputTest < Test::Unit::TestCase
   ]
 
   def create_driver(conf=CONFIG)
-    Fluent::Test::InputTestDriver.new(Fluent::SerialPortInput).configure(conf)
+    Fluent::Test::Driver::Input.new(Fluent::Plugin::SerialPortInput).configure(conf)
   end
 
   def test_configure_test_driver

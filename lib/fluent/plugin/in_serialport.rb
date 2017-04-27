@@ -1,9 +1,12 @@
 require 'fluent/input'
 require 'serialport'
 
-module Fluent
-class SerialPortInput < Input
-  Plugin.register_input('serialport', self)
+module Fluent::Plugin
+class SerialPortInput < Fluent::Plugin::Input
+  Fluent::Plugin.register_input('serialport', self)
+
+  helpers :thread
+
   config_param :com_port, :string
   config_param :baud_rate, :integer
   config_param :tag, :string, default: "serial"
@@ -16,13 +19,14 @@ class SerialPortInput < Input
   end
 
   def start
+    super
     @serial = SerialPort.new(@com_port, @baud_rate, 8, 1, SerialPort::NONE)
-    @thread = Thread.new(&method(:run))
+    thread_create(:in_serialport, &method(:run))
   end
 
   def shutdown
     @serial.close
-    @thread.join
+    super
   end
 
   def run
