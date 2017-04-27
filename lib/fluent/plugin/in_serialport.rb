@@ -10,8 +10,6 @@ class SerialPortInput < Input
   config_param :eol, :string, default: $/
   config_param :include_time, :bool, default: false
 
-  define_method("router") { Fluent::Engine } unless method_defined?(:router)
-
   def configure(conf)
     super
     @device = device
