@@ -3,7 +3,6 @@ require 'fluent/test'
 class SerialPortInputTest < Test::Unit::TestCase
   def setup
     Fluent::Test.setup
-    require 'fluent/plugin/in_serialport'
   end
 
   CONFIG = %[
