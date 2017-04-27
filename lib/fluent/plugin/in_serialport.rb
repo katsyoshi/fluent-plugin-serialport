@@ -1,4 +1,6 @@
 require 'fluent/input'
+require 'serialport'
+
 module Fluent
 class SerialPortInput < Input
   Plugin.register_input('serialport', self)
@@ -11,7 +13,6 @@ class SerialPortInput < Input
   define_method("router") { Fluent::Engine } unless method_defined?(:router)
 
   def initialize
-    require 'serialport'
     super
   end
 
