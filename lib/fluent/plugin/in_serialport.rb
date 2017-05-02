@@ -4,9 +4,9 @@ class SerialPortInput < Input
   Plugin.register_input('serialport', self)
   config_param :com_port, :string
   config_param :baud_rate, :integer
-  config_param :tag, :string, :default => "serial"
-  config_param :eol, :string, :default => $/
-  config_param :include_time, :bool, :default => false
+  config_param :tag, :string, default: "serial"
+  config_param :eol, :string, default: $/
+  config_param :include_time, :bool, default: false
 
   define_method("router") { Fluent::Engine } unless method_defined?(:router)
 
