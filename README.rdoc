@@ -28,6 +28,8 @@ or
 
 {@nidcode}[https://github.com/nidcode]
 
+{@okkez}[https://github.com/okkez]
+
 = Copyright
 
 Copyright:: Copyright (c) 2012- MATSUMOTO Katsuyoshi
