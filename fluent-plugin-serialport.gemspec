@@ -3,7 +3,7 @@ $:.push File.expand_path("../lib", __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = "fluent-plugin-serialport"
-  s.version     = "0.1.0"
+  s.version     = "0.14.0"
   s.authors     = ["MATSUMOTO Katsuyoshi"]
   s.email       = ["github@katsyoshi.org"]
   s.homepage    = "https://github.com/katsyoshi/fluent-plugin-serialport"
