@@ -1,4 +1,4 @@
-require 'fluent/input'
+require 'fluent/plugin/input'
 require 'serialport'
 
 module Fluent::Plugin
