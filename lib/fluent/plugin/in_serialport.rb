@@ -31,7 +31,7 @@ class SerialPortInput < Fluent::Plugin::Input
 
   def run
     loop do
-      unless @serial.closed?
+      break if @serial.closed?
         begin
           timenow = @include_time ? Time.now.to_s << ' ' : ''
           data = {@device => timenow << @serial.readline(@eol)}
@@ -41,7 +41,6 @@ class SerialPortInput < Fluent::Plugin::Input
           break
         end
       end
-    end
   end
 
   private
