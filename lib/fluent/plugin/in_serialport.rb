@@ -35,7 +35,7 @@ class SerialPortInput < Fluent::Plugin::Input
       begin
         timenow = @include_time ? Time.now.to_s << ' ' : ''
         data = {@device => timenow << @serial.readline(@eol)}
-        router.emit(@tag, Engine.now, data)
+        router.emit(@tag, Fluent::EventTime.now, data)
       rescue
         $stderr.puts(caller) unless stopped?
         break
