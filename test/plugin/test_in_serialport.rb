@@ -6,7 +6,7 @@ class SerialPortInputTest < Test::Unit::TestCase
   end
 
   CONFIG = %[
-    type serial_input
+    @type serial_input
     com_port serialport
     baud_rate 9600
     tag serialport
