@@ -32,15 +32,15 @@ class SerialPortInput < Fluent::Plugin::Input
   def run
     loop do
       break if @serial.closed?
-        begin
-          timenow = @include_time ? Time.now.to_s << ' ' : ''
-          data = {@device => timenow << @serial.readline(@eol)}
-          router.emit(@tag, Engine.now, data)
-        rescue
-          $stderr.puts(caller) unless stopped?
-          break
-        end
+      begin
+        timenow = @include_time ? Time.now.to_s << ' ' : ''
+        data = {@device => timenow << @serial.readline(@eol)}
+        router.emit(@tag, Engine.now, data)
+      rescue
+        $stderr.puts(caller) unless stopped?
+        break
       end
+    end
   end
 
   private
