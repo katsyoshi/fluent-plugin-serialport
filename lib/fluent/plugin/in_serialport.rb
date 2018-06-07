@@ -31,15 +31,14 @@ class SerialPortInput < Fluent::Plugin::Input
 
   def run
     loop do
-      unless @serial.closed?
-        begin
-          timenow = @include_time ? Time.now.to_s << ' ' : ''
-          data = {@device => timenow << @serial.readline(@eol)}
-          router.emit(@tag, Engine.now, data)
-        rescue
-          $stderr.puts(caller) unless stopped?
-          break
-        end
+      break if @serial.closed?
+      begin
+        timenow = @include_time ? Time.now.to_s << ' ' : ''
+        data = {@device => timenow << @serial.readline(@eol)}
+        router.emit(@tag, Fluent::EventTime.now, data)
+      rescue => ex
+        log.warn(error: ex) unless stopped?
+        break
       end
     end
   end
