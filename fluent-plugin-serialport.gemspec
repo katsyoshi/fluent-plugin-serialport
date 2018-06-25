@@ -10,7 +10,6 @@ Gem::Specification.new do |s|
   s.summary     = "fluentd plugin for serial port"
   s.description = "fluentd plugin for serial port"
   s.license     = "Apache License, Version 2.0"
-  s.has_rdoc = false
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
